@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login | TimeGen.AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+<div class="auth-page">
+  <div class="card">
+    <h2>Welcome Back !!</h2>
+    <p>Login to continue</p>
+
+    <input type="text" id="loginUser" placeholder="Username or Email">
+    <input type="password" id="loginPass" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p class="switch">
+      Don’t have an account? <a href="/register">Register</a>
+    </p>
+
+    <p id="msg" class="msg"></p>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='auth.js') }}"></script>
+</body>
+</html>

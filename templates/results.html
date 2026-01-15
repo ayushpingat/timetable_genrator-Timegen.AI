@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timetable Results | TimeGen.AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1F4E78 0%, #2E5C8A 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .results-container {
+      padding: 20px;
+      background: transparent;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .division-section {
+      margin-bottom: 40px;
+      border: 2px solid #ddd;
+      padding: 25px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .division-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1F4E78;
+      border-bottom: 3px solid #4472C4;
+      padding-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th {
+      background-color: #4472C4;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid #2F5496;
+      text-transform: uppercase;
+    }
+
+    td {
+      border: 1px solid #d0d0d0;
+      padding: 12px;
+      text-align: center;
+      font-size: 12px;
+      height: 70px;
+      vertical-align: middle;
+    }
+
+    td:first-child {
+      font-weight: 700;
+      background-color: #E7E8EA;
+      width: 60px;
+    }
+
+    td small {
+      display: block;
+      margin-top: 3px;
+      font-size: 11px;
+    }
+
+    .subject-theory {
+      background-color: #E8F4F8;
+      border-left: 4px solid #0099CC;
+    }
+
+    .subject-practical {
+      background-color: #F0E8F8;
+      border-left: 4px solid #9900CC;
+    }
+
+    .break-cell {
+      background-color: #FFE8E8;
+      font-style: italic;
+      color: #666;
+      border-left: 4px solid #FF6666;
+    }
+
+    .button-group {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 30px;
+      margin: 0 10px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download {
+      background-color: #27AE60;
+      color: white;
+    }
+
+    .btn-download:hover {
+      background-color: #229954;
+    }
+
+    .btn-back {
+      background-color: #95A5A6;
+      color: white;
+    }
+
+    .btn-back:hover {
+      background-color: #7F8C8D;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-size: 18px;
+      color: #666;
+    }
+
+    @media print {
+      .header, .button-group {
+        display: none;
+      }
+      .division-section {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #999;
+      }
+    }
+  </style>
+</head>
+
+<body onload="loadResults()">
+
+<div class="header">
+  <h1>📅 Generated Timetable</h1>
+</div>
+
+<div class="results-container">
+  <div id="loadingMsg" class="loading">Loading timetable...</div>
+  <div id="resultsContent"></div>
+
+  <div class="button-group">
+    <button class="btn-download" onclick="downloadPDF()">📥 Download PDF</button>
+    <button class="btn-back" onclick="goBack()">⬅ Go Back</button>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='results.js') }}"></script>
+</body>
+</html>
